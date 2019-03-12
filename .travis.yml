@@ -6,6 +6,9 @@ branches:
   - master
 script:
   - eval $(cat .env | sed 's/^/export /') && eval 'echo "$SWIFT_VERSION"'
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t $DOCKER_USERNAME/swift:$SWIFT_VERSION .
+  - docker images
 before_deploy:
   - git config --local user.name "Satish Babariya"
   - git config --local user.email "satishbabariya@gmail.com"

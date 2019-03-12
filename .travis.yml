@@ -8,6 +8,7 @@ script:
   - eval $(cat .env | sed 's/^/export /') && eval 'echo "$SWIFT_VERSION"'
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t $DOCKER_USERNAME/swift:$SWIFT_VERSION .
+  - docker push $DOCKER_USERNAME/swift
   - docker images
 before_deploy:
   - git config --local user.name "Satish Babariya"

@@ -1,0 +1,17 @@
+dist: trusty
+sudo: true
+install: true
+branches:
+  only:
+  - master
+script:
+  - eval $(cat .env | sed 's/^/export /') && eval 'echo "$SWIFT_VERSION"'
+before_deploy:
+  - git config --local user.name "Satish Babariya"
+  - git config --local user.email "satishbabariya@gmail.com"
+  - eval $(cat .env | sed 's/^/export /') && eval 'echo "$SWIFT_VERSION"'
+  - git tag $SWIFT_VERSION
+deploy:
+  provider: releases
+  api_key: $GITHUBTOKEN
+  skip_cleanup: true

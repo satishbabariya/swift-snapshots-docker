@@ -10,12 +10,14 @@ script:
   - docker build -t $DOCKER_USERNAME/swift .
   - docker tag $DOCKER_USERNAME/swift $DOCKER_USERNAME/swift:$SWIFT_VERSION
   - docker push $DOCKER_USERNAME/swift
-  - docker images
-before_deploy:
-  - git config --local user.name "Satish Babariya"
-  - git config --local user.email "satishbabariya@gmail.com"
-  - eval $(cat .env | sed 's/^/export /') && eval 'echo "$SWIFT_VERSION"'
-  - git tag $SWIFT_VERSION
+  - cd node
+  - docker build -t $DOCKER_USERNAME/swift:node . 
+  - docker push $DOCKER_USERNAME/swift
+# before_deploy:
+#   - git config --local user.name "Satish Babariya"
+#   - git config --local user.email "satishbabariya@gmail.com"
+#   - eval $(cat .env | sed 's/^/export /') && eval 'echo "$SWIFT_VERSION"'
+#   - git tag $SWIFT_VERSION
 # deploy:
 #   provider: releases
 #   api_key: $GITHUBTOKEN

@@ -10,6 +10,3 @@ script:
   - docker build -t $DOCKER_USERNAME/swift .
   - docker tag $DOCKER_USERNAME/swift $DOCKER_USERNAME/swift:$SWIFT_VERSION
   - docker push $DOCKER_USERNAME/swift
-  - cd node
-  - docker build --build-arg "SWIFT_VERSION=$SWIFT_VERSION" -t $DOCKER_USERNAME/swift:node . 
-  - docker push $DOCKER_USERNAME/swift

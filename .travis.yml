@@ -3,7 +3,7 @@ sudo: true
 install: true
 branches:
   only:
-  - master
+  - swift-5.1-branch
 script:
   - eval $(cat .env | sed 's/^/export /') && eval 'echo "$SWIFT_VERSION"'
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin

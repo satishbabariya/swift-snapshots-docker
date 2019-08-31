@@ -7,6 +7,6 @@ branches:
 script:
   - eval $(cat .env | sed 's/^/export /') && eval 'echo "$SWIFT_VERSION"'
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t $DOCKER_USERNAME/swift .
-  - docker tag $DOCKER_USERNAME/swift $DOCKER_USERNAME/swift:$SWIFT_VERSION
-  - docker push $DOCKER_USERNAME/swift
+  - docker build -t $DOCKER_USERNAME/swift:$SWIFT_VERSION .
+#   - docker tag $DOCKER_USERNAME/swift $DOCKER_USERNAME/swift:$SWIFT_VERSION
+  - docker push $DOCKER_USERNAME/swift:$SWIFT_VERSION
